@@ -5,6 +5,7 @@
 } */
 
 .app {
+  min-height: 100vh;
   background: #b92b27; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,

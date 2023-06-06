@@ -1,41 +1,48 @@
 import React from "react";
 
-const Card = ({val}) => {
+const Card = ({ val }) => {
+  const handleChange = () => {
+    console.log(val.show.name);
+    console.log({ ...val });
+  };
+
   return (
     <>
-      <div className="card w-[18rem] rounded-lg shadow-lg relative">
+      <div className="card w-[18rem] rounded-lg shadow-lg">
         <div className="image">
-          <img
-            src={val.show.image.medium}
-            alt={val.show.name}
-            className="w-full object-contain rounded-t-lg"
-          />
+          <>
+            <img
+              src={val.show.image.medium}
+              alt={val.show.name}
+              onClick={handleChange}
+              className="w-full rounded-t-lg hover:scale-90 transition cursor-pointer"
+            />
+          </>
         </div>
         <div className="content p-4">
-          <h1 className="text-xl font-medium">{val.show.name}</h1>
-          {/* <p className="text-[15px] text-slate-300 mt-2">
-                      {val.show.summary.slice(3, 90)}...
-                    </p> */}
-          <div className="flex justify-between mt-2">
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl text-white font-mono">{val.show.name}</h1>
             <span className=" text-sm text-slate-300">
               {val.show.rating.average}
+              {"  "}
+              {val.show.rating.average ? <span>&#9733;</span> : null}
             </span>
-            <p className="flex justify-end gap-1">
-              {val.show.genres.map((e, i) => (
-                <span
-                  key={i}
-                  className="text-xs bg-slate-700 px-1 py-0.5 rounded-md"
-                >
-                  {e}
-                </span>
-              ))}
-            </p>
           </div>
-          <p className="text-xs flex justify-start items-end text-slate-300 gap-2 mt-2">
-            <span className="text-sm font-medium">Premiered</span>
+          <p className="flex justify-start gap-1 mt-2">
+            {val.show.genres.map((e, i) => (
+              <span
+                key={i}
+                className="text-xs bg-slate-700 px-1 py-0.5 rounded-md"
+              >
+                {e}
+              </span>
+            ))}
+          </p>
+          <p className="text-xs flex items-center text-slate-300 gap-2 mt-2">
+            <span className="text-white font-medium">Premiered</span>
             {val.show.premiered}
           </p>
-          <a href={val.show.url} className="text-slate-100">
+          <a href={val.show.url} target="_blank" className="text-slate-100">
             <button
               type="button"
               className="bg-blue-500 px-4 py-2 font-medium rounded-md mt-4"
